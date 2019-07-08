@@ -10,19 +10,13 @@ public class NewExpensePresenterImpl implements NewExpensePresenter {
     private NewExpensePresenter.View view;
 
     private final SaveExpenseUseCase saveExpenseUseCase;
-    private DisposableObserver<String> saveExpenseObserver;
 
     public NewExpensePresenterImpl(SaveExpenseUseCase saveExpenseUseCase) {
         this.saveExpenseUseCase = saveExpenseUseCase;
-        initObservers();
     }
 
-    private void initObservers() {
-        createSaveExpenseObserver();
-    }
-
-    private void createSaveExpenseObserver() {
-        saveExpenseObserver = new DisposableObserver<String>() {
+    private DisposableObserver<String> createSaveExpenseObserver() {
+        return new DisposableObserver<String>() {
 
             @Override
             public void onNext(String s) {
@@ -43,7 +37,7 @@ public class NewExpensePresenterImpl implements NewExpensePresenter {
 
     @Override
     public void saveExpense(Expense expense) {
-        saveExpenseUseCase.execute(saveExpenseObserver, expense);
+        saveExpenseUseCase.execute(createSaveExpenseObserver(), expense);
     }
 
     @Override

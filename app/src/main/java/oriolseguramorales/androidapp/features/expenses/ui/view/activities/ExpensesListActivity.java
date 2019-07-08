@@ -21,9 +21,6 @@ import oriolseguramorales.androidapp.features.expenses.ui.view.adapter.ExpansesL
 
 public class ExpensesListActivity extends AppCompatActivity implements ExpensesListPresenter.View {
 
-    public static final int REQUEST_CODE = 0001;
-    public static final String EXTRA_SAVED = "ExtraSaved";
-
     private RecyclerView recyclerView;
     private ExpansesListAdapter adapter;
     private Button button;
@@ -70,26 +67,10 @@ public class ExpensesListActivity extends AppCompatActivity implements ExpensesL
     }
 
     private void initButton() {
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(ExpensesListActivity.this, NewExpenseActivity.class);
-                startActivityForResult(intent, REQUEST_CODE);
-            }
+        button.setOnClickListener(v -> {
+            Intent intent = new Intent(ExpensesListActivity.this, NewExpenseActivity.class);
+            startActivity(intent);
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == REQUEST_CODE && resultCode == RESULT_OK){
-            if(data != null && data.hasExtra(EXTRA_SAVED)) {
-                if(data.getBooleanExtra(EXTRA_SAVED, false)) {
-                    presenter.getExpensesList();
-                }
-            }
-        }
     }
 
     @Override

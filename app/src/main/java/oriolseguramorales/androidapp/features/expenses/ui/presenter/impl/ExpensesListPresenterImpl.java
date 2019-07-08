@@ -13,20 +13,14 @@ public class ExpensesListPresenterImpl implements ExpensesListPresenter {
     private ExpensesListPresenter.View view;
 
     private final GetExpensesListUseCase getExpensesListUseCase;
-    private DisposableObserver<List<Expense>> getExpensesListObserver;
 
     public ExpensesListPresenterImpl(GetExpensesListUseCase getExpensesListUseCase) {
         this.getExpensesListUseCase = getExpensesListUseCase;
-
-        initObservers();
     }
 
-    private void initObservers() {
-        createGetExpensesListObserver();
-    }
 
-    private void createGetExpensesListObserver() {
-        getExpensesListObserver = new DisposableObserver<List<Expense>>() {
+    private DisposableObserver<List<Expense>> createGetExpensesListObserver() {
+        return new DisposableObserver<List<Expense>>() {
 
             @Override
             public void onNext(List<Expense> expenseList) {
@@ -40,14 +34,14 @@ public class ExpensesListPresenterImpl implements ExpensesListPresenter {
 
             @Override
             public void onComplete() {
-                //Aquí quitaria la barra de progreso
+                //En este punto se debería parar la barra de progreso
             }
         };
     }
 
     @Override
     public void getExpensesList() {
-        getExpensesListUseCase.execute(getExpensesListObserver, null);
+        getExpensesListUseCase.execute(createGetExpensesListObserver(), null);
     }
 
 
