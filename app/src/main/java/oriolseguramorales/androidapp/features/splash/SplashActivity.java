@@ -14,15 +14,13 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        new Thread(new Runnable() {
-            public void run() {
-                try {
-                    Thread.sleep(500);
-                    Intent intent = new Intent(SplashActivity.this, ExpensesListActivity.class);
-                    startActivity(intent);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+                Intent intent = new Intent(SplashActivity.this, ExpensesListActivity.class);
+                startActivity(intent);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }).start();
     }

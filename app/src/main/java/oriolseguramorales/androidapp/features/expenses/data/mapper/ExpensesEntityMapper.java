@@ -12,7 +12,6 @@ public class ExpensesEntityMapper {
 
     public static List<Expense> map(List<ExpensesEntity> expensesEntityList){
         List<Expense> expenseList = new ArrayList<>();
-        Date date;
         for(ExpensesEntity entity : expensesEntityList) {
 
             expenseList.add(new Expense(DateUtils.dateFromString(entity.getDate()),

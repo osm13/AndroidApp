@@ -19,18 +19,9 @@ public abstract class BaseUseCase<T, Params> {
         this.observeOnScheduler = observeOnScheduler;
     }
 
-    /**
-     * Builds an {@link Observable} which will be used when executing the current {@link BaseUseCase}.
-     */
     public abstract Observable<T> buildUseCaseObservable(Params params);
 
-    /**
-     * Executes the current use case.
-     *
-     * @param observer {@link DisposableObserver} which will be listening to the observable build
-     * by {@link #buildUseCaseObservable(Params)} ()} method.
-     * @param params Parameters (Optional) used to build/execute this use case.
-     */
+
     public void execute(DisposableObserver<T> observer, Params params) {
         if(observer != null) {
             final Observable<T> observable = this.buildUseCaseObservable(params)
@@ -40,18 +31,13 @@ public abstract class BaseUseCase<T, Params> {
         }
     }
 
-    /**
-     * Dispose from current {@link CompositeDisposable}.
-     */
     public void dispose() {
         if (!disposables.isDisposed()) {
             disposables.dispose();
         }
     }
 
-    /**
-     * Dispose from current {@link CompositeDisposable}.
-     */
+
     private void addDisposable(Disposable disposable) {
         if(disposable != null) {
             disposables.add(disposable);
