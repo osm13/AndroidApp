@@ -1,8 +1,11 @@
-package oriolseguramorales.androidapp;
+package oriolseguramorales.androidapp.features.splash;
 
-import android.os.Handler;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import oriolseguramorales.androidapp.R;
+import oriolseguramorales.androidapp.features.expenses.ui.view.activities.ExpensesListActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -15,7 +18,8 @@ public class SplashActivity extends AppCompatActivity {
             public void run() {
                 try {
                     Thread.sleep(500);
-
+                    Intent intent = new Intent(SplashActivity.this, ExpensesListActivity.class);
+                    startActivity(intent);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

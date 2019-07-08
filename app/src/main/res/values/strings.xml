@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">AndroidApp</string>
     <string name="expenses_list_new_expense_button">Nuevo gasto</string>
+    <string name="expense_date_hint">fecha de gasto...</string>
+    <string name="name_expense_hint">concepto...</string>
+    <string name="expense_value_hint">importe...</string>
+    <string name="save_expense_button">Guardar</string>
+    <string name="expense_date_title">Fecha del gasto</string>
+    <string name="expense_name_title">Concepto</string>
+    <string name="expense_value_title">Importe</string>
 </resources>

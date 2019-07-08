@@ -2,8 +2,8 @@ package oriolseguramorales.androidapp.core.application;
 
 import android.app.Application;
 
-import oriolseguramorales.androidapp.core.api.AppComponent;
-import oriolseguramorales.androidapp.core.api.DaggerAppComponent;
+import oriolseguramorales.androidapp.core.di.AppComponent;
+import oriolseguramorales.androidapp.core.di.DaggerAppComponent;
 
 public class AndroidAppApplication extends Application {
 
