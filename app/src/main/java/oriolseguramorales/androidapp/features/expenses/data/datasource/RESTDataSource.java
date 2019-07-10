@@ -11,7 +11,7 @@ import oriolseguramorales.androidapp.features.expenses.domain.model.Expense;
 
 public class RESTDataSource implements ExpensesDataSource {
 
-    private static ArrayList<ExpensesEntity> expensesList;
+    public static ArrayList<ExpensesEntity> expensesList;
 
     public RESTDataSource() {
         expensesList = new ArrayList<>();
@@ -38,8 +38,9 @@ public class RESTDataSource implements ExpensesDataSource {
 
     @Override
     public Observable<String> saveNewExpense(ExpensesEntity expense) {
-        expensesList.add(expense);
+
         return Observable.create(emitter -> {
+            expensesList.add(expense);
             emitter.onNext("OK");
             emitter.onComplete();
         });
